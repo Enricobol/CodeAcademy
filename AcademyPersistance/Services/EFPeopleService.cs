@@ -28,7 +28,9 @@ namespace AcademyEFPersistance.Services
 			this.ctx = ctx;
 		}
 
-		public Student CreateStudent(Student s)
+        #region METODI STUDENTI
+
+        public Student CreateStudent(Student s)
 		{
 			studentRepo.Create(s);
 			ctx.SaveChanges();  //Salviamo qui invece che nella repository
@@ -80,9 +82,11 @@ namespace AcademyEFPersistance.Services
 			//ctx.Entry(enr.CourseEdition).Reference(e => e.Course).Load();
 			return enr;
 		}
+        #endregion
 
+        #region METODI ISTRUTTORI
 
-		public Instructor GetInstructorById(long id)
+        public Instructor GetInstructorById(long id)
 		{
 			return instructorRepo.FindById(id);
 		}
@@ -91,5 +95,6 @@ namespace AcademyEFPersistance.Services
 		{
 			return instructorRepo.GetAll();
 		}
+        #endregion
 	}
 }
