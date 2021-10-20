@@ -14,8 +14,9 @@ namespace AcademyModel.Services
 		IEnumerable<Student> GetStudentsByLastnameLike(string lastnameLike);
 		Student CreateStudent(Student s);
 		Student GetStudentById(long id);
-		void UpdateStudent(Student s);
+		Student UpdateStudent(Student s);
 		void DeleteStudent(Student s);
+		void DeleteStudent(long id);
 		Enrollment EnrollSudentToEdition(EnrollData data);
 
 		Instructor GetInstructorById(long id);

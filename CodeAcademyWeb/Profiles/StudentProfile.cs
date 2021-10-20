@@ -8,6 +8,7 @@ using AutoMapper;
 using CodeAcademyWeb.DTOs;
 using NodaTime;
 using NodaTime.Text;
+using AcademyModel.Extensions;
 
 namespace CodeAcademyWeb.Profiles
 {
@@ -20,18 +21,13 @@ namespace CodeAcademyWeb.Profiles
 				.ForMember(dto => dto.Surname, opt => opt.MapFrom(student => student.Lastname));
 
 			CreateMap<StudentDTO, Student>()
-				.ForMember(student => student.DateOfBirth, opt => opt.MapFrom(dto => Parse(dto.DateOfBirth)))
+				.ForMember(student => student.DateOfBirth, opt => opt.MapFrom(dto => dto.DateOfBirth.Parse()))
 				.ForMember(student => student.Lastname, opt =>opt.MapFrom(dto => dto.Surname));
+
 			CreateMap<EnrollData, EnrollDataDTO>();
 			CreateMap<EnrollDataDTO, EnrollData>();
 			CreateMap<Enrollment, EnrollmentDTO>();
 			CreateMap<EnrollmentDTO, Enrollment>();
-		}
-		private LocalDate Parse(string dateString)
-		{
-			LocalDatePattern pattern = LocalDatePattern.CreateWithCurrentCulture("yyyy/MM/dd");
-			var result = pattern.Parse(dateString);
-			return result.Value;
-		}		
+		}	
 	}
 }

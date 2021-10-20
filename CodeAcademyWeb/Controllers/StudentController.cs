@@ -25,17 +25,16 @@ namespace CodeAcademyWeb.Controllers
 			this.mapper = mapper;
 		}
 
+		//PRENDI TUTTI STUDENTI
 		[HttpGet]
 		public IActionResult GetAll()
 		{
-			//var students = service.GetAllStudents();
-			//var studentDTOS = students.Select(s => new StudentDTO(s));
-			//return studentDTOS;
-
 			var students = service.GetAllStudents();
 			var studentDTOs = mapper.Map<IEnumerable<StudentDTO>>(students);
 			return Ok(studentDTOs);
 		}
+
+		//CREA STUDENTE
 		[HttpPost]
 		public IActionResult Create(StudentDTO s)
 		{
@@ -44,6 +43,49 @@ namespace CodeAcademyWeb.Controllers
 			var studentDTO = mapper.Map<StudentDTO>(student);
 			return Created($"/api/student/{studentDTO.Id}", studentDTO);
 		}
+
+		//ELIMINA PER STUDENT
+		[HttpDelete]
+		public IActionResult RemoveStudent(StudentDTO studentDTO)
+		{
+			var student = mapper.Map<Student>(studentDTO);
+			service.DeleteStudent(student);
+			var resDTO = mapper.Map<StudentDTO>(student);
+			return Ok(resDTO);
+		}
+
+		//ELIMINA PER ID
+		[HttpDelete]
+		[Route("{id}")]
+		public IActionResult DeleteStudent(long id)
+		{
+			var student = service.GetStudentById(id);
+			service.DeleteStudent(id);
+			var resDTO = mapper.Map<StudentDTO>(student);
+			return Ok(resDTO);
+		}
+
+		//GET STUDENT BY ID
+		[HttpGet]
+		[Route("{id}")]
+		public IActionResult GetById(long id)
+		{
+			var student = service.GetStudentById(id);
+			var studentDTO = mapper.Map<StudentDTO>(student);
+			return Ok(studentDTO);
+		}
+
+		//UPDATE STUDENT
+		[HttpPut]
+		public IActionResult UpdateStudent(StudentDTO studentDTO)
+		{
+			var student = mapper.Map<Student>(studentDTO);
+			student = service.UpdateStudent(student);
+			var resDTO = mapper.Map<StudentDTO>(student);
+			return Created($"/api/student/{resDTO.Id}", resDTO);
+		}
+
+		//ISCRIVI STUDENTE
 		[HttpPost]
 		[Route("{idStudent}/enrollments")]
 		public IActionResult EnrollStudent(EnrollDataDTO dataDTO, long idStudent)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AcademyEfPersistance.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,7 +74,8 @@ namespace AcademyEfPersistance.Migrations
                     Syllabus = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Level = table.Column<int>(type: "int", nullable: false),
                     AreaId = table.Column<long>(type: "bigint", nullable: false),
-                    GrantsCertification = table.Column<bool>(type: "bit", nullable: false)
+                    GrantsCertification = table.Column<bool>(type: "bit", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -255,9 +256,9 @@ namespace AcademyEfPersistance.Migrations
                 column: "CourseEditionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_StudentId",
+                name: "IX_Enrollments_StudentId_CourseEditionId",
                 table: "Enrollments",
-                column: "StudentId");
+                columns: new[] { "StudentId", "CourseEditionId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lessons_ClassroomId",

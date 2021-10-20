@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcademyEfPersistance.Migrations
 {
     [DbContext(typeof(AcademyContext))]
-    [Migration("20211013105926_AddedEnrollmentIndexAndCourseCreationColumn")]
-    partial class AddedEnrollmentIndexAndCourseCreationColumn
+    [Migration("20211020123851_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

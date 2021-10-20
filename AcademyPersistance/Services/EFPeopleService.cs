@@ -48,16 +48,25 @@ namespace AcademyEFPersistance.Services
 		{
 			return studentRepo.FindStudentWithCoursesById(id);
 		}
-		public void UpdateStudent(Student s)
+		public Student UpdateStudent(Student s)
 		{
-			studentRepo.Update(s);
+			var res = studentRepo.Update(s);		
+			ctx.SaveChanges();
+			return res;
+		}
+
+        public void DeleteStudent(Student s)
+        {
+            studentRepo.Delete(s);
+            ctx.SaveChanges();
+        }
+
+        public void DeleteStudent(long id)
+		{
+			studentRepo.Delete(id);
 			ctx.SaveChanges();
 		}
-		public void DeleteStudent(Student s)
-		{
-			studentRepo.Delete(s);
-			ctx.SaveChanges();
-		}
+
 		public Enrollment EnrollSudentToEdition(EnrollData data)
 		{
 			var student = studentRepo.FindById(data.IdStudent);

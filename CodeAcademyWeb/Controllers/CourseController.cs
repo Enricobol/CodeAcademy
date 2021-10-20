@@ -22,6 +22,8 @@ namespace CodeAcademyWeb.Controllers
 			this.service = service;
 			this.mapper = mapper;
 		}
+
+
 		[HttpGet]
 		public IActionResult GetAll()
 		{
@@ -29,6 +31,8 @@ namespace CodeAcademyWeb.Controllers
 			var courseDTOs = mapper.Map<IEnumerable<CourseDTO>>(course);
 			return Ok(courseDTOs);
 		}
+
+
 		[HttpGet]
 		[Route("{id}")]
 		public IActionResult GetById(long id) {
@@ -36,6 +40,7 @@ namespace CodeAcademyWeb.Controllers
 			var courseDTO = mapper.Map<CourseDTO>(course);
 			return Ok(courseDTO);
 		}
+
 
 		[HttpGet]
 		[Route("areas")]
@@ -45,6 +50,8 @@ namespace CodeAcademyWeb.Controllers
 			var areaDTOs = mapper.Map<IEnumerable<AreaDTO>>(areas);
 			return Ok(areaDTOs);
 		}
+
+
 		[HttpPost]
 		public IActionResult CreateCourse(CourseDTO courseDTO)
 		{
@@ -53,6 +60,8 @@ namespace CodeAcademyWeb.Controllers
 			var resDTO = mapper.Map<CourseDTO>(course);
 			return Created($"/api/courses/{resDTO.Id}", resDTO);
 		}
+
+
 		[HttpPut]
 		public IActionResult UpdateCourse(CourseDTO courseDTO)
 		{
@@ -61,6 +70,8 @@ namespace CodeAcademyWeb.Controllers
 			var resDTO = mapper.Map<CourseDTO>(course);
 			return Created($"/api/courses/{resDTO.Id}", resDTO);
 		}
+
+
 		[HttpDelete]
 		public IActionResult RemoveCourse(CourseDTO courseDTO)
 		{
