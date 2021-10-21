@@ -12,13 +12,11 @@ namespace AcademyModel.Services
 {
 	public interface IDidactisService
 	{
-		
 
-
-		CourseEdition CreateCourseEdition(CourseEdition e);
+        #region METODI Corsi
 		IEnumerable<Course> FindCourseByTitleLike(string title);
-		IEnumerable<Course> FindCourseByCourseDescriptionLike(string description);
 		IEnumerable<Course> FindCourseByArea(long idArea);
+		IEnumerable<Course> FindCourseByCourseDescriptionLike(string description);
 		IEnumerable<Course> GetAllCourses();
 		IEnumerable<Course> GetLastCourses(int n);
 		Course GetCourseById(long id);
@@ -27,20 +25,27 @@ namespace AcademyModel.Services
 		void DeleteCourse(Course c);
 		void DeleteCourse(long id);
 
+        #endregion
+
+        #region METODI Edizione Corsi
+        CourseEdition CreateCourseEdition(CourseEdition e);
 		IEnumerable<CourseEdition> GetAllEditions();
 		CourseEdition GetEditionById(long id);
 		CourseEdition EditCourseEdition(CourseEdition e);
 		void DeleteCourseEdition(long id);
 		public IEnumerable<CourseEdition> GetEditionsByCourseId(long id);
 		IEnumerable<CourseEdition> Search(EditionSearchInfo info);
+        #endregion
 
 
-		
-
-		IEnumerable<Lesson> FindLessonForEditionId(long id);
+        #region METODI LESSONS & AREA
+        IEnumerable<Lesson> FindLessonForEditionId(long id);
 		IEnumerable<Lesson> FindLessonInRange(LocalDate start, LocalDate end);
-
 		IEnumerable<Area> GetAllAreas();
+
+        #endregion
+
+
 
 
 		

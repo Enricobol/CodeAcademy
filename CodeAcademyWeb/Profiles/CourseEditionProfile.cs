@@ -15,6 +15,8 @@ namespace CodeAcademyWeb.Profiles
 	{
 		public CourseEditionProfile()
 		{
+
+
 			CreateMap<CourseEdition, CourseEditionDTO>(); // Da database a DTO
 			CreateMap<CourseEditionDTO, CourseEdition>(); // Da DTO a database
 
