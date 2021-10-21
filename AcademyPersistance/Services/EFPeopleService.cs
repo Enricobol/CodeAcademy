@@ -44,9 +44,10 @@ namespace AcademyEFPersistance.Services
 		{
 			return studentRepo.FindByLastnameLike(lastnameLike).ToList(); //Non più una query, ma una lista vera e propria grazie a .ToList
 		}
+
 		public Student GetStudentById(long id)
 		{
-			return studentRepo.FindStudentWithCoursesById(id);
+			return studentRepo.FindById(id);
 		}
 		public Student UpdateStudent(Student s)
 		{

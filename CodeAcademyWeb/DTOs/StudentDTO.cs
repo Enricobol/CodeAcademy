@@ -17,19 +17,5 @@ namespace CodeAcademyWeb.DTOs
 		public string Email { get; set; }
 		public string PhoneNumber { get; set; }
 		public bool IsEmployee { get; set; }
-		
-		public StudentDTO(){ }
-		public StudentDTO(Student original) 
-		{
-			Id = original.Id;
-			Firstname = original.Firstname;
-			Surname = original.Lastname;
-			Address = original.Address;
-			City = original.City;
-			Email = original.Email;
-			PhoneNumber = original.PhoneNumber;
-			IsEmployee = original.IsEmployee;
-			DateOfBirth = original.DateOfBirth.ToString("yyyy/MM/dd", null);
-		}
 	}
 }

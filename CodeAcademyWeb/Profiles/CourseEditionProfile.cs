@@ -20,8 +20,8 @@ namespace CodeAcademyWeb.Profiles
 
 			CreateMap<CourseEdition, CourseEditionDetailsDTO>()
 				.ForMember(dto => dto.InstructorFullName, opt => opt.MapFrom(edition => $"{edition.Instructor.Firstname} {edition.Instructor.Lastname}"))
-				.ForMember(dto => dto.StartDate, opt => opt.MapFrom(edition => edition.StartDate.ToString("yyyy/MM/dd", null)))
-				.ForMember(dto => dto.FinalizationDate, opt => opt.MapFrom(edition => edition.FinalizationDate.ToString("yyyy/MM/dd", null)));
+				.ForMember(dto => dto.StartDate, opt => opt.MapFrom(edition => edition.StartDate.ToLocalDateString()))
+				.ForMember(dto => dto.FinalizationDate, opt => opt.MapFrom(edition => edition.FinalizationDate.ToLocalDateString()));
 			
 			CreateMap<CourseEditionDetailsDTO, CourseEdition>()
 				.ForMember(edition => edition.StartDate, opt => opt.MapFrom(dto => dto.StartDate.Parse()))

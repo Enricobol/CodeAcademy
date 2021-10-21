@@ -17,7 +17,7 @@ namespace CodeAcademyWeb.Profiles
 		public StudentProfile()
 		{
 			CreateMap<Student, StudentDTO>()
-				.ForMember(dto => dto.DateOfBirth, opt => opt.MapFrom(student => student.DateOfBirth.ToString("yyyy/MM/dd", null)))
+				.ForMember(dto => dto.DateOfBirth, opt => opt.MapFrom(student => student.DateOfBirth.ToLocalDateString()))
 				.ForMember(dto => dto.Surname, opt => opt.MapFrom(student => student.Lastname));
 
 			CreateMap<StudentDTO, Student>()
