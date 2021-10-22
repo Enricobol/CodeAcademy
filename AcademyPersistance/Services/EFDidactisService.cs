@@ -109,7 +109,7 @@ namespace AcademyEFPersistence.Services
 		{
 			CheckCourse(e.CourseId);
 			CheckInstructor(e.InstructorId);
-			CheckCourseEdition(e.Id);
+			//CheckCourseEdition(e.Id);
 			editionRepo.Update(e);
 			ctx.SaveChanges();
 			return e;

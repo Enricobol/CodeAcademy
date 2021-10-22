@@ -63,30 +63,14 @@ namespace CodeAcademyWeb.Controllers
 		}
 
 
-		[HttpPatch]
-		[Route("{id}")]
-		public IActionResult Edit(CourseEditionDetailsDTO e)
+		[HttpPut]
+		public IActionResult UpdateCourseEdition(CourseEditionDetailsDTO cedDTO)
 		{
-			try
-			{
-				var edition = mapper.Map<CourseEdition>(e);
-				service.EditCourseEdition(edition);
-				var courseEditionDTO = mapper.Map<CourseEditionDetailsDTO>(edition);
-				return NoContent();
-			}
-			catch (EntityNotFoundException ex)
-			{
-				switch (ex.EntityName)
-				{
-					case nameof(CourseEdition):
-						return NotFound(ex.Message);
-
-					default:
-						return BadRequest(new ErrorObject(StatusCodes.Status400BadRequest, ex.Message));
-				}
-			}
+			var courseEdition = mapper.Map<CourseEdition>(cedDTO);
+			courseEdition = service.EditCourseEdition(courseEdition);
+			var courseEditionDTO = mapper.Map<CourseEditionDetailsDTO>(courseEdition);
+			return Created($"/api/edition/{courseEditionDTO.Id}", courseEditionDTO);
 		}
-
 
 		[HttpDelete]
 		[Route("{id}")]
