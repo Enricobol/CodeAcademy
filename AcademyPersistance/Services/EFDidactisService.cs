@@ -68,10 +68,6 @@ namespace AcademyEFPersistence.Services
 			courseRepo.Delete(id);
 			ctx.SaveChanges();
 		}
-		public IEnumerable<CourseEdition> GetEditionsByCourseId(long id)
-		{
-			return editionRepo.GetEditionsByCourseId(id);
-		}
 
 		public Course UpdateCourse(Course c)
 		{
@@ -91,10 +87,16 @@ namespace AcademyEFPersistence.Services
 		{
 			return editionRepo.GetAll();
 		}
+		public IEnumerable<CourseEdition> GetEditionsByCourseId(long id)
+		{
+			return editionRepo.GetEditionsByCourseId(id);
+		}
+
 		public CourseEdition GetEditionById(long id)
 		{
 			return editionRepo.FindById(id);
 		}
+
 		public CourseEdition CreateCourseEdition(CourseEdition e)
 		{
 			CheckCourse(e.CourseId);

@@ -12,8 +12,9 @@ using System.Threading.Tasks;
 
 namespace CodeAcademyWeb.Controllers
 {
-	[Route("api/[controller]")]
+
 	[ApiController]
+	[Route("api/[controller]")]
 	public class CourseEditionController : Controller
 	{
 		private IDidactisService service;
@@ -23,6 +24,7 @@ namespace CodeAcademyWeb.Controllers
 			this.service = service;
 			this.mapper = mapper;
 		}
+
 		[HttpGet]
 		public IActionResult GetAll()
 		{
@@ -30,8 +32,9 @@ namespace CodeAcademyWeb.Controllers
 			var editionDTOs = mapper.Map<IEnumerable<CourseEditionDTO>>(editions);
 			return Ok(editionDTOs);
 		}
-		[Route("{id}")]
+
 		[HttpGet]
+		[Route("{id}")]
 		public IActionResult FindById(long id)
 		{
 			var edition = service.GetEditionById(id);
@@ -42,6 +45,7 @@ namespace CodeAcademyWeb.Controllers
 			var editionDTO = mapper.Map<CourseEditionDetailsDTO>(edition);
 			return Ok(editionDTO);
 		}
+
 		[HttpPost]
 		public IActionResult Create(CourseEditionDetailsDTO e)
 		{
@@ -57,7 +61,10 @@ namespace CodeAcademyWeb.Controllers
 				return BadRequest(new ErrorObject(StatusCodes.Status400BadRequest, ex.Message));
 			}
 		}
-		[HttpPut]
+
+
+		[HttpPatch]
+		[Route("{id}")]
 		public IActionResult Edit(CourseEditionDetailsDTO e)
 		{
 			try
@@ -79,8 +86,10 @@ namespace CodeAcademyWeb.Controllers
 				}
 			}
 		}
-		[Route("{id}")]
+
+
 		[HttpDelete]
+		[Route("{id}")]
 		public IActionResult Delete(long id)
 		{
 			try
@@ -93,6 +102,8 @@ namespace CodeAcademyWeb.Controllers
 				return NotFound(new ErrorObject(StatusCodes.Status404NotFound, ex.Message));
 			}
 		}
+
+
 		[HttpGet]
 		[Route("course/{id}")]
 		public IActionResult GetEditionsByCourseId(long id)

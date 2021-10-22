@@ -9,7 +9,9 @@ namespace CodeAcademyWeb.DTOs
 	{
 		public long Id { get; set; }
 		public string Code { get; set; }
-		public string Description { get; set; }
+		public long CourseId { get; set; }
+		public string CourseTitle { get; set; }
+		public string StartDate { get; set; }
 		public decimal RealPrice { get; set; }
 	}
 }
